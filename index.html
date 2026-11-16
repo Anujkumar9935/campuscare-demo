@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>CampusCare — Emergency & Help Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#home" aria-label="CampusCare home">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2 20 6v5.3c0 5.2-3.4 8.3-8 9.9-4.6-1.6-8-4.7-8-9.9V6l8-2.8Z"/><path d="M12 7.5v8M8 11.5h8"/></svg></span>
+        <span class="brand-name">campus<span>care</span></span>
+      </a>
+
+      <div class="campus-switch"><span class="campus-dot"></span><span><small>YOUR CAMPUS</small><strong>Northbridge University</strong></span><span class="chevron">⌄</span></div>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <p class="nav-label">WORKSPACE</p>
+        <a class="nav-link active" href="#home"><span class="nav-icon">⌂</span>Overview</a>
+        <a class="nav-link" href="#alerts"><span class="nav-icon">◉</span>Campus alerts <span class="nav-count">2</span></a>
+        <a class="nav-link" href="#help"><span class="nav-icon">＋</span>Get help</a>
+        <a class="nav-link" href="#contacts"><span class="nav-icon">▦</span>Emergency contacts</a>
+        <a class="nav-link" href="#map"><span class="nav-icon">⌖</span>Campus map</a>
+        <p class="nav-label nav-label-spaced">CAMPUS</p>
+        <a class="nav-link" href="#safety"><span class="nav-icon">✳</span>Safety resources</a>
+        <a class="nav-link" href="#updates"><span class="nav-icon">◷</span>My requests</a>
+        <a class="nav-link admin-nav" href="#admin" id="adminNav" hidden><span class="nav-icon">▤</span>Admin dashboard</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="support-card"><span class="support-icon">✦</span><strong>Need a hand?</strong><p>Our campus support team is here for you, day or night.</p><a href="#contacts">View support options <span>→</span></a></div>
+        <button class="profile" id="profileButton"><span class="avatar">AS</span><span><strong id="profileName">Alex Student</strong><small id="profileRole">Student account · Sign in</small></span><span class="more">•••</span></button>
+      </div>
+    </aside>
+
+    <main class="main-area" id="home">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+        <div class="breadcrumb">Northbridge University <span>/</span> <strong>Overview</strong></div>
+        <div class="top-actions"><span class="top-date" id="todayDate"></span><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">☾</button><button class="accessibility-toggle" id="accessibilityToggle" aria-label="Accessibility settings" title="Accessibility settings">A<span>+</span></button><button class="language-toggle" id="languageToggle" aria-label="Switch language">हिन्दी</button><button class="icon-button notification" id="notificationButton" aria-label="Notifications">♧<i></i></button><span class="top-avatar" id="topAvatar">AS</span>
+          <div class="notification-popover" id="notificationPopover" hidden><strong>Notifications</strong><p><i></i><span><b>Lift maintenance</b><small>East Library · Advisory</small></span></p><p><i></i><span><b>Safety walk today</b><small>Campus security · 5:30 PM</small></span></p><a href="#alerts">View campus alerts →</a></div>
+          <div class="accessibility-popover" id="accessibilityPopover" hidden role="dialog" aria-label="Accessibility settings"><strong id="accessibilityTitle">Accessibility</strong><span class="a11y-label" id="textSizeLabel">Text size</span><div class="text-size-options"><button data-text-size="normal" class="active" id="normalTextButton">A &nbsp; Normal</button><button data-text-size="large" id="largeTextButton">A+ &nbsp; Large</button></div><label class="contrast-option"><input type="checkbox" id="contrastToggle"><span class="contrast-check">✓</span><span id="contrastLabel">High contrast</span></label><small id="a11ySavedNote">Settings are saved on this device.</small></div>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="welcome-row">
+          <div><p class="eyebrow">MONDAY, NOVEMBER 2, 2026</p><h1>Good morning, Alex <span>✦</span></h1><p class="welcome-copy">Your campus support, all in one place.</p></div>
+          <div class="safe-status"><span class="status-check">✓</span><span><strong>Campus status</strong><small>All clear right now</small></span><span class="live-dot"></span></div>
+        </section>
+
+        <section class="hub-search" aria-label="Search campus help">
+          <span class="search-symbol">⌕</span><input id="hubSearch" type="search" autocomplete="off" placeholder="Search help, contacts, alerts or places…" aria-label="Search help, contacts, alerts or places"><kbd>/</kbd>
+          <div class="search-results" id="searchResults" hidden></div>
+        </section>
+
+        <section class="stats-row" aria-label="Campus overview statistics">
+          <article class="stat-card"><span class="stat-icon stat-ok">✓</span><span><small>CAMPUS STATUS</small><strong>All clear</strong><em><i></i> Updated just now</em></span><span class="stat-decoration">01</span></article>
+          <article class="stat-card"><span class="stat-icon stat-requests">◷</span><span><small>MY REQUESTS</small><strong id="statRequestCount">0 active</strong><em id="statRequestNote">Nothing needs your attention</em></span><span class="stat-decoration">02</span></article>
+          <article class="stat-card"><span class="stat-icon stat-contacts">✚</span><span><small>SUPPORT TEAMS</small><strong>3 available</strong><em>Security · Health · Wellbeing</em></span><span class="stat-decoration">03</span></article>
+        </section>
+
+        <section class="hero-card" aria-labelledby="emergencyHeading">
+          <div class="hero-copy"><span class="hero-kicker"><span class="pulse"></span> HERE FOR YOU, 24/7</span><h2 id="emergencyHeading">If it’s urgent,<br>we’re one tap away.</h2><p>Get immediate help from campus security or connect with the right support team.</p><button class="sos-button" id="sosButton"><span>✚</span> Request emergency help <kbd>→</kbd></button><small class="hero-note">For immediate danger, use your local emergency number.</small></div>
+          <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-circle"><span class="art-cross">✚</span></div><div class="art-pill pill-one">✦ &nbsp; Safety first</div><div class="art-pill pill-two"><span class="mini-live"></span> Help is nearby</div><div class="art-spark spark-one">✳</div><div class="art-spark spark-two">✦</div></div>
+        </section>
+
+        <section class="quick-section" id="help">
+          <div class="section-heading"><div><p class="eyebrow">HOW CAN WE HELP?</p><h2>Quick support</h2></div><button class="text-button" id="allHelpButton">All support options <span>→</span></button></div>
+          <div class="quick-grid">
+            <button class="quick-card" data-category="Medical"><span class="quick-icon icon-coral">✚</span><span class="quick-text"><strong>Medical help</strong><small>Health center & first aid</small></span><span class="card-arrow">↗</span></button>
+            <button class="quick-card" data-category="Campus safety"><span class="quick-icon icon-blue">⌑</span><span class="quick-text"><strong>Campus safety</strong><small>Security & safe escort</small></span><span class="card-arrow">↗</span></button>
+            <button class="quick-card" data-category="Wellbeing"><span class="quick-icon icon-lilac">♡</span><span class="quick-text"><strong>Wellbeing</strong><small>Counselling & support</small></span><span class="card-arrow">↗</span></button>
+            <button class="quick-card" data-category="Facilities"><span class="quick-icon icon-green">⌂</span><span class="quick-text"><strong>Campus issue</strong><small>Facilities & accessibility</small></span><span class="card-arrow">↗</span></button>
+            <button class="quick-card" data-category="Safe Walk"><span class="quick-icon icon-walk">⇢</span><span class="quick-text"><strong id="quickSafeWalkTitle">Safe Walk</strong><small id="quickSafeWalkNote">Request a campus escort</small></span><span class="card-arrow">↗</span></button>
+            <button class="quick-card" data-category="Incident report"><span class="quick-icon icon-report">⚑</span><span class="quick-text"><strong id="quickReportTitle">Report a concern</strong><small id="quickReportNote">Tell us about a campus issue</small></span><span class="card-arrow">↗</span></button>
+          </div>
+        </section>
+
+        <div class="lower-grid">
+          <section class="panel alerts-panel" id="alerts">
+            <div class="panel-heading"><div><p class="eyebrow">STAY INFORMED</p><h2>Campus alerts</h2></div><a class="text-button" href="#updates">View all <span>→</span></a></div>
+            <article class="alert-item"><span class="alert-symbol alert-amber">!</span><div class="alert-body"><div class="alert-title-row"><strong>East Library — lift maintenance</strong><span class="tag tag-amber">ADVISORY</span></div><p>Use the west entrance or contact Accessibility Services for assistance.</p><small>Today, 9:15 AM <span>·</span> Facilities</small></div><span class="alert-chevron">›</span></article>
+            <article class="alert-item"><span class="alert-symbol alert-green">✓</span><div class="alert-body"><div class="alert-title-row"><strong>Welcome week safety walk</strong><span class="tag tag-green">INFO</span></div><p>Join campus security for a guided walk around campus at 5:30 PM.</p><small>Today, 8:00 AM <span>·</span> Campus Safety</small></div><span class="alert-chevron">›</span></article>
+          </section>
+
+          <section class="panel contacts-panel" id="contacts">
+            <div class="panel-heading"><div><p class="eyebrow">ALWAYS WITHIN REACH</p><h2>Key contacts</h2></div><a class="text-button" href="#safety">Directory <span>→</span></a></div>
+            <div class="contact-row"><span class="contact-icon contact-red">✚</span><span class="contact-info"><strong>Campus security</strong><small>24-hour response team</small></span><a href="tel:+10000000000" class="call-button" aria-label="Call campus security">↗</a></div>
+            <div class="contact-row"><span class="contact-icon contact-blue">♡</span><span class="contact-info"><strong>Student wellbeing</strong><small>Counselling & mental health</small></span><a href="tel:+10000000001" class="call-button" aria-label="Call student wellbeing">↗</a></div>
+            <div class="contact-row"><span class="contact-icon contact-green">⌂</span><span class="contact-info"><strong>Health center</strong><small>Mon–Fri, 8:00 AM–6:00 PM</small></span><a href="tel:+10000000002" class="call-button" aria-label="Call health center">↗</a></div>
+            <p class="demo-note">Demo contact numbers — replace with your campus directory.</p>
+          </section>
+        </div>
+
+        <section class="panel directory-panel" id="directory">
+          <div class="panel-heading directory-heading"><div><p class="eyebrow">FIND THE RIGHT TEAM</p><h2>Campus service directory</h2></div><span class="directory-count" id="directoryCount">5 services</span></div>
+          <div class="directory-toolbar"><label class="directory-search"><span>⌕</span><input id="directorySearch" type="search" placeholder="Search teams or locations…" aria-label="Search campus services"></label><div class="directory-filters" role="group" aria-label="Filter services"><button class="filter-chip selected" data-filter="all">All</button><button class="filter-chip" data-filter="favorites">Favorites</button><button class="filter-chip" data-filter="security">Security</button><button class="filter-chip" data-filter="health">Health</button><button class="filter-chip" data-filter="wellbeing">Wellbeing</button><button class="filter-chip" data-filter="campus">Campus</button></div></div>
+          <div class="directory-grid" id="directoryGrid"></div>
+          <p class="directory-disclaimer">Demo directory — confirm service hours, locations, and contacts with your campus before launch.</p>
+        </section>
+
+        <section class="panel map-panel" id="map">
+          <div class="panel-heading"><div><p class="eyebrow">CAMPUS AT A GLANCE</p><h2>Campus map & safe points</h2></div><button class="text-button" id="locateButton">⌖ Find my location</button></div>
+          <div class="map-layout">
+            <div class="campus-map" role="img" aria-label="Illustrated campus map with help points">
+              <div class="map-road road-a"></div><div class="map-road road-b"></div><div class="map-road road-c"></div>
+              <div class="map-building building-library"><span>LIBRARY</span></div><div class="map-building building-hall"><span>STUDENT<br>HALL</span></div><div class="map-building building-health"><span>HEALTH<br>CENTER</span></div><div class="map-building building-science"><span>SCIENCE<br>BLOCK</span></div><div class="map-building building-garden"><span>GARDEN</span></div>
+              <button class="map-pin pin-security" data-place="Campus security desk · Main Gate" aria-label="Campus security at Main Gate">✚</button><button class="map-pin pin-health" data-place="Health center · East Walk" aria-label="Health center">✚</button><button class="map-pin pin-safe" data-place="Safe point · Student Hall" aria-label="Safe point">✓</button><span class="map-you" id="mapYou" hidden>YOU</span>
+              <div class="map-compass">N<br>↑</div>
+            </div>
+            <div class="map-legend"><strong>Help points</strong><p><i class="legend-dot legend-red"></i>Campus security <small>Main Gate · Open 24/7</small></p><p><i class="legend-dot legend-blue"></i>Health center <small>East Walk · Open until 6 PM</small></p><p><i class="legend-dot legend-green"></i>Campus safe point <small>Student Hall · Staffed</small></p><div class="map-caption">Illustrative campus map. Pin locations are demo locations.</div></div>
+          </div>
+        </section>
+
+        <div class="safety-tools-grid">
+          <section class="panel checkin-panel" aria-labelledby="checkinTitle">
+            <div class="panel-heading"><div><p class="eyebrow">QUICK WELLBEING CHECK</p><h2 id="checkinTitle">Safety check-in</h2></div><span class="checkin-heart">♡</span></div>
+            <p class="checkin-copy">Let yourself know you’re okay. Your check-in stays private on this device.</p>
+            <div class="checkin-status" id="checkinStatus"><span class="checkin-pulse"></span><span><strong>No check-in yet</strong><small>Tap below whenever you want to check in.</small></span></div>
+            <button class="checkin-button" id="checkinButton">✓ &nbsp; I’m safe</button>
+            <small class="checkin-privacy">This does not notify campus staff or contacts.</small>
+          </section>
+          <section class="panel checklist-panel" aria-labelledby="checklistTitle">
+            <div class="panel-heading"><div><p class="eyebrow">BE READY, FEEL CONFIDENT</p><h2 id="checklistTitle">My safety checklist</h2></div><span class="checklist-progress" id="checklistProgress">0 / 4</span></div>
+            <div class="progress-track"><span id="progressBar"></span></div>
+            <label class="checklist-item"><input type="checkbox" data-check="contacts"><span class="custom-check">✓</span><span><strong>Save important campus contacts</strong><small>Security, health center & support teams</small></span></label>
+            <label class="checklist-item"><input type="checkbox" data-check="exits"><span class="custom-check">✓</span><span><strong>Know your nearest exits</strong><small>Check the buildings you visit often</small></span></label>
+            <label class="checklist-item"><input type="checkbox" data-check="safe-space"><span class="custom-check">✓</span><span><strong>Find a campus safe point</strong><small>See marked locations on the campus map</small></span></label>
+            <label class="checklist-item"><input type="checkbox" data-check="buddy"><span class="custom-check">✓</span><span><strong>Choose a check-in buddy</strong><small>Agree how you’ll reach each other</small></span></label>
+          </section>
+        </div>
+
+        <section class="panel requests-panel" id="updates">
+          <div class="panel-heading"><div><p class="eyebrow">YOUR SUPPORT ACTIVITY</p><h2>My requests</h2></div><span class="request-total" id="requestTotal">0 requests</span></div>
+          <div id="requestList" class="request-list"><div class="empty-requests"><span>◷</span><strong>No requests yet</strong><small>Your submitted help requests will appear here.</small></div></div>
+        </section>
+
+        <section class="panel admin-panel" id="admin" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">STAFF WORKSPACE · DEMO</p><h2>Admin dashboard</h2></div><span class="request-total" id="adminTotal">0 requests</span></div>
+          <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>REQUEST</th><th>LOCATION</th><th>RECEIVED</th><th>STATUS</th></tr></thead><tbody id="adminRequestList"><tr><td colspan="4" class="empty-admin">No help requests in this browser yet.</td></tr></tbody></table></div>
+          <p class="admin-note">Demo admin view: status changes are stored locally in this browser only.</p>
+        </section>
+
+        <section class="bottom-banner" id="safety"><span class="banner-icon">✦</span><div><strong>A little prep goes a long way.</strong><p>Save key contacts and learn your campus safe spaces before you need them.</p></div><a href="#contacts">Explore safety resources <span>→</span></a><button class="download-card-button" id="downloadCardButton">↓ &nbsp; Download offline card</button></section>
+        <footer>CampusCare <span>·</span> Built for a safer, more connected campus <span class="footer-right">Prototype experience</span></footer>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="helpModal" aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="closeModal" aria-label="Close">×</button>
+      <span class="modal-icon">✦</span><p class="eyebrow">CAMPUS SUPPORT</p><h2 id="modalTitle">Tell us what you need</h2><p class="modal-intro">Your request will be routed to the right campus team.</p>
+      <form id="helpForm">
+        <label for="requestType">What do you need help with?</label><select id="requestType" required><option value="">Choose a support team</option><option>Medical</option><option>Campus safety</option><option>Wellbeing</option><option>Facilities</option><option>Safe Walk</option><option>Incident report</option><option>Other</option></select>
+        <label for="requestLocation" id="locationLabel">Where are you?</label><input id="requestLocation" placeholder="Building, room, or campus area" required>
+        <div class="escort-fields" id="escortFields" hidden>
+          <label for="escortDestination">Where would you like to go?</label><input id="escortDestination" placeholder="Destination building or campus gate">
+          <label for="escortTime">When do you need the escort?</label><select id="escortTime"><option value="Now">As soon as possible</option><option value="In 15 minutes">In about 15 minutes</option><option value="Schedule later">Schedule for later</option></select>
+          <div id="scheduledTimeWrap" hidden><label for="scheduledTime">Choose a date and time</label><input id="scheduledTime" type="datetime-local"></div>
+          <p class="escort-note">Demo request only. No escort will be dispatched.</p>
+        </div>
+        <div id="reportFields" hidden>
+          <label for="incidentCategory">What kind of concern is this?</label><select id="incidentCategory"><option value="Safety hazard">Safety hazard</option><option value="Accessibility issue">Accessibility issue</option><option value="Facilities issue">Facilities issue</option><option value="Other concern">Other concern</option></select>
+        </div>
+        <label for="requestDetails" id="detailsLabel">Add a short note <span>(optional)</span></label><textarea id="requestDetails" rows="3" placeholder="Share anything that will help us respond"></textarea>
+        <small class="report-note" id="reportNote" hidden>Demo report only — it stays in this browser and is not sent to campus staff.</small>
+        <button type="submit" class="submit-button">Send help request <span>→</span></button><small class="form-disclaimer">Prototype only: requests are saved in this browser and are not sent to campus staff.</small>
+      </form>
+    </section>
+  </div>
+  <div class="modal-backdrop" id="loginModal" aria-hidden="true">
+    <section class="modal compact-modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <button class="modal-close" id="closeLogin" aria-label="Close">×</button><span class="modal-icon">♙</span><p class="eyebrow">DEMO ACCOUNT</p><h2 id="loginTitle">Choose a demo profile</h2><p class="modal-intro">Switch between student and staff views on this device.</p>
+      <form id="loginForm"><label for="loginName">Display name</label><input id="loginName" value="Alex Student" required><label for="loginRole">Demo role</label><select id="loginRole"><option value="student">Student</option><option value="admin">Campus staff · Admin</option></select><button type="submit" class="submit-button">Continue <span>→</span></button><small class="form-disclaimer">Demo profile only; no password or real authentication.</small></form>
+    </section>
+  </div>
+  <div class="modal-backdrop" id="cardModal" aria-hidden="true">
+    <section class="modal compact-modal" role="dialog" aria-modal="true" aria-labelledby="cardModalTitle">
+      <button class="modal-close" id="closeCardModal" aria-label="Close">×</button><span class="modal-icon">▣</span><p class="eyebrow">OFFLINE SAFETY</p><h2 id="cardModalTitle">Prepare your emergency card</h2><p class="modal-intro">Add verified numbers. The card is generated on this device and works offline.</p>
+      <form id="cardForm"><label for="cardCampusPhone">Campus security number <span>(optional)</span></label><input id="cardCampusPhone" type="tel" placeholder="Enter verified campus number"><label for="cardLocalPhone">Local emergency number <span>(optional)</span></label><input id="cardLocalPhone" type="tel" placeholder="Enter official local emergency number"><label for="cardHealthPhone">Health center number <span>(optional)</span></label><input id="cardHealthPhone" type="tel" placeholder="Enter verified health center number"><small class="card-privacy-note">Numbers are included only in the file you download. Empty numbers appear as “Add verified number”.</small><button type="submit" class="submit-button">Download emergency card <span>↓</span></button></form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
